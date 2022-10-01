@@ -4,6 +4,7 @@
 
 const std::regex int_pattern_u("[0-9]+");
 const std::regex int_pattern("-?[0-9]+");
+const std::regex space_pattern("[\\s]*");
 
 class CustomArray
 {
@@ -23,7 +24,7 @@ void input_nb(const std::string instruction, const std::regex pattern, int* targ
   std::string s = "";
   std::cout << instruction << std::endl;
   std::cin >> s;
-  while (!std::regex_match(s, pattern)) {
+  while (std::regex_search(s, space_pattern) || !std::regex_match(s, pattern)) {
     std::cout << "Invalid number!" << std::endl;
     std::cout << instruction << std::endl;
     std::cin.clear();
